@@ -1,4 +1,4 @@
-Take screenshots during your unit tests or integration tests. 
+Take screenshots during your flutter unit tests. 
 
 ## usage
 
