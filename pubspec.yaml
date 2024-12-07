@@ -1,0 +1,19 @@
+name: test_screenshot
+description: Take screenshots during your unit tests or integration tests
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.7.0-223.0.dev
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  image: ^4.3.0
+
+dev_dependencies:
+
+  flutter_lints: ^5.0.0
