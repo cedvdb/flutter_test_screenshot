@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io' show HttpOverrides;
 import 'package:file/file.dart';
 import 'package:file/local.dart';
