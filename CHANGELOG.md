@@ -1,3 +1,8 @@
+## 0.0.5
+
+* relax dart version
+
+
 ## 0.0.4
 
 * relax dart version
