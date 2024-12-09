@@ -51,15 +51,17 @@ extension ExtendedTestWidget on WidgetTester {
   Future<void> screenshotWithImages(
     Future<void> Function() callback, {
     String? path,
+    HttpOverrides? httpOverrides,
   }) async {
-    HttpOverrides.global = null;
-    await _loadFonts();
+    HttpOverrides.global = httpOverrides;
+    await loadFonts();
     await runAsync(callback);
-    await _loadImages();
+    await renderImages();
     await screenshot(path: path);
   }
 
-  Future<void> _loadImages() async {
+  /// call this so the test actually renders the images
+  Future<void> renderImages() async {
     await runAsync(() async {
       for (var element in find.byType(Image).evaluate()) {
         final Image widget = element.widget as Image;
@@ -71,7 +73,7 @@ extension ExtendedTestWidget on WidgetTester {
   }
 
   /// Loads the cached material icon font and roboto font.
-  Future<void> _loadFonts() async {
+  Future<void> loadFonts() async {
     const FileSystem fs = LocalFileSystem();
     const Platform platform = LocalPlatform();
     final Directory flutterRoot = fs.directory(

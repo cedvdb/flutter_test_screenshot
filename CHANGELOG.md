@@ -1,6 +1,11 @@
+## 0.0.6
+
+* allow http overrides in screenshot with images
+
+
 ## 0.0.5
 
-* relax dart version
+* allow screenshots with images
 
 
 ## 0.0.4
