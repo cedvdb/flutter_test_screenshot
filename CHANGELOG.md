@@ -1,3 +1,7 @@
+## 0.0.7
+
+ * relax deps versions
+
 ## 0.0.6
 
 * allow http overrides in screenshot with images
