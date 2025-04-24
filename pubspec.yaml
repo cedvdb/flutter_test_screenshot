@@ -1,6 +1,6 @@
 name: test_screenshot
 description: Take screenshots during your flutter unit tests
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/cedvdb/flutter_test_screenshot
 
 environment:

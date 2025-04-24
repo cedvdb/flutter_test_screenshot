@@ -38,11 +38,9 @@ extension ExtendedTestWidget on WidgetTester {
       if (png == null) {
         throw 'could not decode img';
       }
-      await fs
-          .file(
-            path ?? 'screenshot-${DateTime.now().toIso8601String()}.png',
-          )
-          .writeAsBytes(img.encodePng(png));
+      final fileName = path ??
+          'screenshot-${DateTime.now().toIso8601String().replaceAll(RegExp(r'[:.]'), '-')}.png';
+      await fs.file(fileName).writeAsBytes(img.encodePng(png));
     });
   }
 

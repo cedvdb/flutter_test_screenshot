@@ -1,3 +1,7 @@
+## 0.0.8
+
+ * Fix path for windows
+
 ## 0.0.7
 
  * relax deps versions
