@@ -15,11 +15,11 @@ import 'package:platform/platform.dart';
 extension ExtendedTestWidget on WidgetTester {
   /// returns bytes of a screenshot of the screen, useful for making a
   /// diagnostic for unit test failures.
-  Future<Uint8List> _takeScreenshot() async {
+  Future<Uint8List> _takeScreenshot({double pixelRatio = 3}) async {
     final renderObj = renderObject<RenderRepaintBoundary>(
       find.byKey(const ValueKey('screenshotter')),
     );
-    ui.Image image = await renderObj.toImage(pixelRatio: 3);
+    ui.Image image = await renderObj.toImage(pixelRatio: pixelRatio);
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     if (byteData == null) {
       throw 'could not transform image to bytes';
@@ -28,11 +28,11 @@ extension ExtendedTestWidget on WidgetTester {
   }
 
   /// Takes a screenshot of the current view and saves it under [path].
-  Future<void> screenshot({String? path}) async {
+  Future<void> screenshot({String? path, double pixelRatio = 3}) async {
     const FileSystem fs = LocalFileSystem();
 
     await runAsync(() async {
-      final screenshot = await _takeScreenshot();
+      final screenshot = await _takeScreenshot(pixelRatio: pixelRatio);
       // Write the PNG formatted data to a file.
       final png = img.decodePng(screenshot);
       if (png == null) {
@@ -50,12 +50,13 @@ extension ExtendedTestWidget on WidgetTester {
     Future<void> Function() callback, {
     String? path,
     HttpOverrides? httpOverrides,
+    double pixelRatio = 3,
   }) async {
     HttpOverrides.global = httpOverrides;
     await loadFonts();
     await runAsync(callback);
     await renderImages();
-    await screenshot(path: path);
+    await screenshot(path: path, pixelRatio: pixelRatio);
   }
 
   /// call this so the test actually renders the images
